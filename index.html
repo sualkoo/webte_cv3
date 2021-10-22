@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&display=swap" rel="stylesheet"> 
+    <title>Formulár na očkovanie</title>
+  </head>
+  <body>
+    <header>
+      <h1>Formulár na očkovanie</h1>
+    </header>
+    <form action="http://iolab.sk/form2mail/form2mail.php" method="post" enctype="multipart/form-data" > 
+      <input type="hidden" name="apikey" value="fa3513e6b1aa20353c474f8e840515f0">
+      <input type="hidden" name="from" value="xlaus@stuba.sk">
+      <input type="hidden" name="to" value="sualkoo@gmail.com">
+      <input type="hidden" name="subject" value="Z3 Laus Martin">
+      <input type="hidden" name="redirectOk" value="https://google.com">
+      <input type="hidden" name="redirectFalse" value="https://google.com">
+
+      <div class="p1">
+        <label for="name">Meno: *</label>
+        <input type="text" id="name" placeholder="Krstné meno" required>
+      </div>
+      <div class="p1">
+        <label for="surname">Priezvisko: *</label>
+        <input type="text" id="surname" placeholder="Priezvisko" required>
+      </div>
+      <div class="p1">
+        <label for="date">Dátum narodenia: *</label>
+        <input type="date" id="start" name="trip-start"
+        value=""
+        min="1900-01-01" max="2021-12-31">
+      </div>
+      <div>
+        <label for="age">Vek:</label>
+        <input type="number" id="age" onchange="validate()" required>
+      </div>
+      <div class="p1">
+        <label for="mail">E-mail: *</label>
+        <input type="email" name="mail" id="mail" class="form-control" placeholder="xxx@stuba.sk" required>
+      </div>
+      <div class="p2">
+        <label for="gender">Pohlavie:</label>
+        <input type="checkbox" id="male" name="male" value="male">
+        <label for="male"> Muž</label><br>
+        <input type="checkbox" id="female" name="female" value="female">
+        <label for="female">Žena</label><br>
+        <input type="checkbox" id="other" onclick="hide()">
+        <label for="other"> Iné</label><br>
+        <textarea name="otherarea" id="otherarea" cols="30" rows="3"></textarea>            
+      </div>
+      <label>Ste ochotná/ochotný sa zaočkovať ?</label>
+      <input type="radio" id="y" name="hehe" value="yes" onchange="hideVaccine()">
+      <label for="y">Áno</label>
+      <input type="radio" id="n" name="hehe" value="no" onchange="hideVaccine()" checked>
+      <label for="n">Nie</label>
+
+      <div id="hideVaccine">
+        <div id="vaccineForm">
+          <label for="vaccine">Vyberte typ vakcíny:</label>
+          <select id="vaccine" name="typ" onchange="vaccineChanged(this.value)">
+            <option type="hidden" selected></option>
+            <option value="Pfizer">Pfizer</option>
+            <option value="Janssen">Janssen</option>
+            <option value="Moderna">Moderna</option>
+          </select>
+        </div>   
+        <div id="cityForm">
+          <label for="city">Vyberte mesto kde sa chcete zaočkovať:</label>
+          <select id="city" name="mesta" onchange="cityChanged(this.value)">
+            <option value="BA">Bratislava</option>
+            <option value="TT">Trnava</option>
+            <option value="NR">Nitra</option>
+            <option value="TN">Trenčín</option>
+            <option value="ZA">Žilina</option>
+            <option value="BB">Banská Bystrica</option>
+            <option value="PO">Prešov</option>
+            <option value="KE">Košice</option>
+          </select>
+        </div>   
+        <div id="hospitalForm">
+          <label>Vyberte nemocnicu:</label>
+          <select id="hospital" name="nemocnice">
+            <option value="BA1">Poliklinika Mlynská Dolina</option>
+            <option value="BA2">Onkologický ústav sv. Alžbety</option>
+            <option value="BA3">UNsP Milosrdní bratia</option>
+            <option value="TT">FN Trnava - starý areál</option>
+            <option value="TN1">FN Trenčín</option>
+            <option value="TN2">Trenčín JUH</option>
+            <option value="TN3">Poliklinika Trenčín</option>
+            <option value="NR1">FN Nitra</option>
+            <option value="NR2">VKOC Nitra</option>
+            <option value="NR3">Medicínske centrum Nitra</option>
+            <option value="ZA1">FN Žilina</option>
+            <option value="ZA2">ŽILPO Žilina</option>
+            <option value="BB1">FNsP F.D. Roosevelta Banská Bystrica</option>
+            <option value="BB2">VKOC Banská Bystrica</option>
+            <option value="PO">FNsP J.A. Reimana Prešov</option>
+            <option value="KE1">UN L. Pasteura Košice</option>
+            <option value="KE2">VKOC Košice</option>
+          </select>
+        </div>  
+      </div>          
+      <button id="submitButton" type="submit">Odoslať</button>      
+    </form>
+    <footer>© 2021 Martin Lauš</footer>
+  </body>
+  <script src="script.js"></script>
+</html>
